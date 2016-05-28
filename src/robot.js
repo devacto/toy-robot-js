@@ -23,4 +23,21 @@ robot.prototype.left = function() {
   }
 };
 
+robot.prototype.right = function() {
+  switch(lcase(this.direction)) {
+    case 'north':
+      this.direction = 'east';
+      break;
+    case 'east':
+      this.direction = 'south';
+      break;
+    case 'south':
+      this.direction = 'west';
+      break;
+    case 'west':
+      this.direction = 'north';
+      break;
+  }
+};
+
 module.exports = robot;
