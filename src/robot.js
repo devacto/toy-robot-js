@@ -1,5 +1,7 @@
 var robot = function(args) {
   this.direction = args.direction;
+  this.x = args.x;
+  this.y = args.y;
 };
 
 var lcase = function(original) {
@@ -36,6 +38,23 @@ robot.prototype.right = function() {
       break;
     case 'west':
       this.direction = 'north';
+      break;
+  }
+};
+
+robot.prototype.move = function() {
+  switch(lcase(this.direction)) {
+    case 'north':
+      this.y += 1;
+      break;
+    case 'east':
+      this.x += 1;
+      break;
+    case 'south':
+      this.y -= 1;
+      break;
+    case 'west':
+      this.x -= 1;
       break;
   }
 };
