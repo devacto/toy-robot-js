@@ -1,8 +1,9 @@
 var robot = require('../../src/robot');
 
-describe('robot', function() {
-  it('moves correctly', function() {
-    var something = robot.move();
-    something.should.equal(0);
+describe('robot moving left from north', function() {
+  it('should have direction of west', function() {
+    var myRobot = new robot({ direction: 'north' });
+    myRobot.left();
+    myRobot.direction.should.equal('west');
   });
 });

@@ -1,9 +1,11 @@
-var robot = {
-  id: 0
+var robot = function(args) {
+  this.direction = args.direction;
 };
 
-robot.move = function() {
-  return robot.id;
+robot.prototype.left = function() {
+  if(String(this.direction).toLowerCase() === 'north') {
+    this.direction = 'west';
+  }
 };
 
 module.exports = robot;
