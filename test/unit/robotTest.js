@@ -11,7 +11,7 @@ describe('robot turning left', function() {
 
   _.forEach(directionsToLeft, function(value, key) {
     describe('from ' + key, function(){
-      it('should have direction of ' + value, function() {
+      it('should face ' + value, function() {
         var myRobot = new robot({ direction: key });
         myRobot.left();
         myRobot.direction.should.equal(value);
@@ -30,7 +30,7 @@ describe('robot turning right', function() {
 
   _.forEach(directionsToRight, function(value, key) {
     describe('from ' + key, function(){
-      it('should have direction of ' + value, function() {
+      it('should face ' + value, function() {
         var myRobot = new robot({ direction: key });
         myRobot.right();
         myRobot.direction.should.equal(value);
@@ -78,5 +78,14 @@ describe('robot moving', function() {
       myRobot.x.should.equal(1);
       myRobot.y.should.equal(2);
     });
+  });
+});
+
+describe('robot reporting', function() {
+  it('should return correct string', function() {
+    var myRobot = new robot({ x: 2, y: 3, direction: 'north' });
+    var result = myRobot.report();
+
+    result.should.equal('2,3,NORTH');
   });
 });

@@ -8,6 +8,10 @@ var lcase = function(original) {
   return String(original).toLowerCase();
 };
 
+var ucase = function(original) {
+  return String(original).toUpperCase();
+};
+
 robot.prototype.left = function() {
   switch(lcase(this.direction)) {
     case 'north':
@@ -57,6 +61,10 @@ robot.prototype.move = function() {
       this.x -= 1;
       break;
   }
+};
+
+robot.prototype.report = function() {
+  return this.x + ',' + this.y + ',' + ucase(this.direction);
 };
 
 module.exports = robot;
