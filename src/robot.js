@@ -2,6 +2,7 @@ var robot = function(args) {
   this.direction = args.direction;
   this.x = args.x;
   this.y = args.y;
+  this.board = args.board;
 };
 
 var lcase = function(original) {
@@ -49,16 +50,24 @@ robot.prototype.right = function() {
 robot.prototype.move = function() {
   switch(lcase(this.direction)) {
     case 'north':
-      this.y += 1;
+      if(this.board.validatePosition(this.x, this.y + 1)){
+        this.y += 1;
+      }
       break;
     case 'east':
-      this.x += 1;
+      if(this.board.validatePosition(this.x + 1, this.y)){
+        this.x += 1;
+      }
       break;
     case 'south':
-      this.y -= 1;
+      if(this.board.validatePosition(this.x, this.y - 1)){
+        this.y -= 1;
+      }
       break;
     case 'west':
-      this.x -= 1;
+      if(this.board.validatePosition(this.x - 1, this.y)){
+        this.x -= 1;
+      }
       break;
   }
 };

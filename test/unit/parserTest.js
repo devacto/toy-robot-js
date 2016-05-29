@@ -1,9 +1,12 @@
 var parser = require('../../src/parser');
 var robot = require('../../src/robot');
+var board = require('../../src/board');
+
+var myBoard = new board({ width: 5, height: 5 });
 
 describe('parsing PLACE command', function() {
   describe('robot should have', function() {
-    var myRobot = new robot({ x: 0, y: 0, direction: 'north' });
+    var myRobot = new robot({ board: myBoard, x: 0, y: 0, direction: 'north' });
     var myParser = new parser({ robot: myRobot });
     myParser.parse('PLACE 1,1,SOUTH');
 
@@ -23,7 +26,7 @@ describe('parsing PLACE command', function() {
 
 describe('parsing LEFT command', function() {
   describe('robot should have', function() {
-    var myRobot = new robot({ x: 0, y: 0, direction: 'north' });
+    var myRobot = new robot({ board: myBoard, x: 0, y: 0, direction: 'north' });
     var myParser = new parser({ robot: myRobot });
     myParser.parse('LEFT');
 
@@ -43,7 +46,7 @@ describe('parsing LEFT command', function() {
 
 describe('parsing RIGHT command', function() {
   describe('robot should have', function() {
-    var myRobot = new robot({ x: 0, y: 0, direction: 'north' });
+    var myRobot = new robot({ board: myBoard, x: 0, y: 0, direction: 'north' });
     var myParser = new parser({ robot: myRobot });
     myParser.parse('RIGHT');
 
@@ -63,7 +66,7 @@ describe('parsing RIGHT command', function() {
 
 describe('parsing MOVE command', function() {
   describe('robot should have', function() {
-    var myRobot = new robot({ x: 0, y: 0, direction: 'north' });
+    var myRobot = new robot({ board: myBoard, x: 0, y: 0, direction: 'north' });
     var myParser = new parser({ robot: myRobot });
     myParser.parse('MOVE');
 
@@ -83,12 +86,12 @@ describe('parsing MOVE command', function() {
 
 describe('parsing REPORT command', function() {
   describe('with robot', function() {
-    var myRobot = new robot({ x: 0, y: 0, direction: 'north' });
+    var myRobot = new robot({ board: myBoard, x: 0, y: 0, direction: 'north' });
     var myParser = new parser({ robot: myRobot });
     var result = myParser.parse('REPORT');
 
     it('produces the correct string', function() {
-      result.should.equal('0,0,NORTH'); 
+      result.should.equal('0,0,NORTH');
     });
   });
 });
