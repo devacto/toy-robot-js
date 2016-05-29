@@ -3,3 +3,13 @@
 # toy-robot-js
 
 Toy robot problem in Javascript.
+
+## Usage
+
+### Running the app with test data
+
+`./index.js ./test-data/test-01.command`
+
+### Running code quality and unit tests
+
+`./bin/test.sh`

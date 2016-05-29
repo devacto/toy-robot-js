@@ -73,7 +73,8 @@ robot.prototype.move = function() {
 };
 
 robot.prototype.report = function() {
-  return this.x + ',' + this.y + ',' + ucase(this.direction);
+  var result = this.x + ',' + this.y + ',' + ucase(this.direction);
+  return result;
 };
 
 module.exports = robot;
