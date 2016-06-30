@@ -8,5 +8,8 @@ echo "checking code quality"
 printf "\nrunning unit tests"
 ./bin/test-unit.sh
 
+printf "\nrunning functional tests"
+./bin/bats test/functional/robot.bats
+
 printf "\nchecking test coverage\n"
 ./node_modules/.bin/istanbul --config=./config/istanbul.json check-coverage

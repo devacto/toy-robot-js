@@ -1,6 +1,7 @@
 var _ = require('lodash');
 var robot = require('../../src/robot');
 var board = require('../../src/board');
+var portal = require('../../src/portal');
 
 var myBoard = new board({ width: 5, height: 5 });
 
@@ -44,6 +45,21 @@ describe('robot turning right', function() {
 
 describe('robot moving', function() {
   describe('facing north', function() {
+    describe('through a portal', function() {
+        var myPortal = new portal({ x:0, y:1, direction: 'north', x1:2, y1:2});
+        myBoard.portal = myPortal;
+        var myRobot = new robot({ board: myBoard, x: 0, y: 0, direction: 'north' });
+
+        it('should move to teleported position', function() {
+          myRobot.move();
+          myRobot.move();
+          myRobot.x.should.equal(2);
+          myRobot.y.should.equal(2);
+          myRobot.direction.should.equal('north');
+        });
+
+    });
+
     var myRobot = new robot({ board: myBoard, x: 2, y: 2, direction: 'north' });
 
     it('should move forward', function() {

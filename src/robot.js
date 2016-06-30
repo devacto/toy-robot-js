@@ -48,27 +48,33 @@ robot.prototype.right = function() {
 };
 
 robot.prototype.move = function() {
-  switch(lcase(this.direction)) {
-    case 'north':
-      if(this.board.validatePosition(this.x, this.y + 1)){
-        this.y += 1;
-      }
-      break;
-    case 'east':
-      if(this.board.validatePosition(this.x + 1, this.y)){
-        this.x += 1;
-      }
-      break;
-    case 'south':
-      if(this.board.validatePosition(this.x, this.y - 1)){
-        this.y -= 1;
-      }
-      break;
-    case 'west':
-      if(this.board.validatePosition(this.x - 1, this.y)){
-        this.x -= 1;
-      }
-      break;
+  if(this.board.checkForPortal(this.x, this.y, this.direction)) {
+    this.x = this.board.portal.x1;
+    this.y = this.board.portal.y1;
+  } else {
+    switch(lcase(this.direction)) {
+      case 'north':
+        if(this.board.validatePosition(this.x, this.y + 1)) {
+            this.y += 1;
+        }
+        break;
+
+      case 'east':
+        if(this.board.validatePosition(this.x + 1, this.y)){
+          this.x += 1;
+        }
+        break;
+      case 'south':
+        if(this.board.validatePosition(this.x, this.y - 1)){
+          this.y -= 1;
+        }
+        break;
+      case 'west':
+        if(this.board.validatePosition(this.x - 1, this.y)){
+          this.x -= 1;
+        }
+        break;
+    }
   }
 };
 

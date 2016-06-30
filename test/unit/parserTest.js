@@ -1,6 +1,7 @@
 var parser = require('../../src/parser');
 var robot = require('../../src/robot');
 var board = require('../../src/board');
+var portal = require('../../src/portal');
 
 var myBoard = new board({ width: 5, height: 5 });
 
@@ -92,6 +93,24 @@ describe('parsing REPORT command', function() {
 
     it('produces the correct string', function() {
       result.should.equal('0,0,NORTH');
+    });
+  });
+});
+
+describe('parsing PORTAL command', function() {
+  describe('with board', function() {
+    var myBoard = new board({width: 5, height: 5});
+    var myRobot = new robot({ board: myBoard, x: 0, y: 0, direction: 'north' });
+    var myParser = new parser({ robot: myRobot });
+
+    myParser.parse('PORTAL 0,1,NORTH,2,2');
+
+    it('produces a portal with correct attributes in the board', function() {
+      myBoard.portal.x.should.equal(0);
+      myBoard.portal.y.should.equal(1);
+      myBoard.portal.direction.should.equal('north');
+      myBoard.portal.x1.should.equal(2);
+      myBoard.portal.y1.should.equal(2);
     });
   });
 });
